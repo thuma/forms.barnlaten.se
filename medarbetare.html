@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Medarbetarenkät Barnlåten</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/vue.js"></script>
+  </head>
+  <body>
+    <div id="app" class="container">
+      <p>Skala 1 - 6: <br>
+        1. stämmer i högsta grad - 6. Stämmer inte alls <br>
+        7. Vet ej/inget svar
+      <ol>
+        <li v-for="(q, i ) in questions">
+          {{ q }}<br>
+          <label v-for="s in svar">
+            {{ s }}.
+            <input class="form-check-input" v-model="response[i]" v-bind:value="s" type="radio" v-bind:name="'fraga'+i">&nbsp;&nbsp;&nbsp;&nbsp;
+          </label><br>
+          Kommentar:
+          <textarea class="form-control" v-model="kommentar[i]">
+          </textarea>
+        </li>
+      </ol>
+      </p>
+    </div>
+
+    <script>
+      const { createApp } = Vue
+
+      app = createApp({
+       data() {
+         return {
+           questions: ["Jag trivs bra på Barnlåten.",
+                      "Jag upplever att rektor ser och uppmärksammar mig.",
+                      "Om jag skulle ha ett problem så upplever jag att jag kan prata med mitt arbetslag om detta.",
+                      "Det råder ett ärligt klimat mellan medarbetarna i arbetslaget.",
+                      "Jag har möjlighet att själv påverka min arbetsdagens upplägg och innehåll.",
+                      "Jag känner till vad som krävs och förväntas av mig.",
+                      "Jag upplever att jag på förskolan ges möjlighet att utvecklas som pedagog.",
+                      "Det är en god arbetsmiljö.",
+                      "Jag anser att barnen får den hjälp de behöver.",
+                      "Utvecklingssamtal och dokumentationen är ett bra stöd i barnens utveckling.",
+                      "Läroplanen styr verksamheten."],
+            svar: [1,2,3,4,5,6,7],
+            response: ["","","","","","","","","","",""],
+            kommentar: ["","","","","","","","","","",""]
+         }
+        }
+     }).mount('#app')
+    </script>
+
+  </body>
+</html>
